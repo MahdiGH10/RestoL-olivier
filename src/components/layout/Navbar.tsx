@@ -16,7 +16,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -24,8 +24,8 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "bg-cream/92 backdrop-blur-md shadow-[0_1px_0_rgba(38,36,28,0.10)]" : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+          scrolled ? "bg-[#FBFBFA] shadow-sm" : "bg-transparent"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -34,9 +34,11 @@ export default function Navbar() {
         <div className="wrap flex items-center justify-between py-4 md:py-5">
             <motion.a
             href="#"
+            className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
           >
             <LogoAnimation variant="navbar" />
+            <span className={`font-fraunces text-sm sm:text-lg tracking-tight transition-colors duration-300 ease-in-out ${scrolled ? "text-[#22251D]" : "text-white"}`}>Restorant l'olivier</span>
           </motion.a>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -44,8 +46,8 @@ export default function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`text-xs uppercase tracking-[0.12em] transition-colors duration-300 font-space-mono ${
-                  scrolled ? "text-ink/70 hover:text-ink" : "text-cream/70 hover:text-cream"
+                className={`text-xs uppercase tracking-[0.12em] font-space-mono transition-all duration-300 ease-in-out ${
+                  scrolled ? "text-[#22251D] hover:text-[#22251D]" : "text-white/75 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -53,10 +55,10 @@ export default function Navbar() {
             ))}
             <motion.a
               href={`tel:${RESTAURANT.phones[0].replace(/\s/g, "")}`}
-              className={`text-xs font-space-mono px-4 py-2 rounded-full border transition-all duration-300 ${
+              className={`text-xs font-space-mono px-4 py-2 rounded-full border transition-all duration-300 ease-in-out ${
                 scrolled
-                  ? "border-ink text-ink hover:bg-gold hover:border-gold hover:text-ink"
-                  : "border-cream/40 text-cream hover:bg-gold hover:border-gold hover:text-ink"
+                  ? "border-[#22251D] text-[#22251D] hover:bg-gold hover:border-gold hover:text-[#22251D]"
+                  : "border-white/40 text-white hover:bg-gold hover:border-gold hover:text-[#22251D]"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -66,8 +68,8 @@ export default function Navbar() {
           </nav>
 
           <button
-            className={`md:hidden relative w-8 h-6 flex flex-col justify-center gap-1.5 z-50 ${
-              scrolled ? "text-ink" : "text-cream"
+            className={`md:hidden relative w-8 h-6 flex flex-col justify-center gap-1.5 z-50 transition-colors duration-300 ease-in-out ${
+              scrolled ? "text-[#22251D]" : "text-white"
             }`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
