@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FAF6ED;
+  --color-cream-card: #F2EBDA;
+  --color-ink: #26241C;
+  --color-olive-dark: #30371F;
+  --color-olive: #6E7A4B;
+  --color-olive-soft: #8E9A6C;
+  --color-wood: #8A5A34;
+  --color-gold: #BE8A3D;
+  --font-fraunces: "Fraunces", serif;
+  --font-work-sans: "Work Sans", sans-serif;
+  --font-space-mono: "Space Mono", monospace;
+
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-marquee: marquee var(--duration, 40s) linear infinite;
+  --animate-marquee-reverse: marquee-reverse var(--duration, 40s) linear infinite;
+  --animate-border-beam: border-beam calc(var(--duration, 8s)) linear infinite;
+  --animate-word-fade-in: word-fade-in 0.5s ease-out forwards;
+  --animate-meteor: meteor 5s linear infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 0 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - var(--gap, 1rem))); }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(calc(-50% - var(--gap, 1rem))); }
+  to { transform: translateX(0); }
+}
+
+@keyframes border-beam {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+@keyframes word-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes meteor {
+  0% { transform: rotate(215deg) translateX(0); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-work-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--color-gold);
+    color: #1c1a12;
+  }
+}
+
+@utility wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
